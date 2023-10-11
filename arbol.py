@@ -89,15 +89,19 @@ class nodoArbol(object):
                 self.der.imprimirInOrden()
 
 
-    def imprimirPreOrden(self, raiz):
-        if(raiz is not None):
-            print(raiz.info)
-            self.imprimirPreOrden(raiz.izq)
-            self.imprimirPreOrden(raiz.der)
+    def imprimirPreOrden(self):
+        if(self.info is not None):
+            print(self.info)
+            if self.der != None:
+                self.der.imprimirPreOrden()
+            if self.izq != None:
+                self.izq.imprimirPreOrden()
 
 
-    def imprimirPostOrden(self, raiz):
-        if(raiz is not None):
-            self.imprimirPostOrden(raiz.izq)
-            self.imprimirPostOrden(raiz.der)
-            print(raiz.info)
+    def imprimirPostOrden(self):
+        if(self.info is not None):
+            if self.izq != None:
+                self.izq.imprimirPostOrden()
+            if self.der != None:
+                self.der.imprimirPostOrden()
+            print(self.info)

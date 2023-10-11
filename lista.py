@@ -60,17 +60,32 @@ class Lista(object):
     def index_of(self, info):
         actual = self.inicio
         index = 0
-        while actual.info is not info:
+        existe = False
+        lista = Lista()
+        for _ in range(self.tamanio):
+            if actual.info.get_nombre() == info:
+                return index
+            elif actual.info.get_id() == info:
+                existe = True
+                lista.insertar(actual.info.get_nombre())
+            elif actual.info.get_tipo().index(0) == info or actual.info.get_tipo().index(1) == info:
+                existe = True
+                lista.insertar(actual.info.get_nombre())
+            elif actual.info.get_generacion() == info:
+                existe = True
+                lista.insertar(actual.info.get_nombre())
             index += 1
             actual = actual.siguiente
-            if actual == None:
-                return None
-        return index
+        if existe:
+            return lista
+        else:
+            return None
+
 
 
     def index(self, indice):
         actual = self.inicio
-        for _i in range(indice):
+        for _ in range(indice):
             actual = actual.siguiente
             if actual == None:
                 return None

@@ -8,3 +8,7 @@ raiz.insertarNodo("K")
 raiz.insertarNodo("O")
 
 raiz.imprimirInOrden()
+print("--------------------------------")
+raiz.imprimirPostOrden()
+print("--------------------------------")
+raiz.imprimirPreOrden()

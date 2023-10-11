@@ -10,6 +10,22 @@ class Pokemon():
         self.__generacion = gen
 
 
+    def get_nombre(self):
+        return self.__nombre
+
+
+    def get_id(self):
+        return self.__id
+
+
+    def get_forma(self):
+        return self.__forma
+
+
+    def get_generacion(self):
+        return self.__generacion
+
+
     def set_tipo(self, tipo):
         self.__tipo = tipo
 
