@@ -8,56 +8,56 @@ class Cola(object):
         self.tamanio = 0
 
 
-def arribo(cola, info):
-    nuevoNodo = nodoCola()
-    nuevoNodo.info = info
-    if cola.salida is None:
-        cola.salida = nuevoNodo
-    else:
-        cola.entrada.siguiente = nuevoNodo
-    cola.entrada = nuevoNodo
-    cola.tamanio += 1
-
-
-def atencion(cola):
-    info = cola.salida.info
-    cola.salida = cola.salida.siguiente
-    if cola.salida is None:
-        cola.entrada = None
-    cola.tamanio -= 1
-    return info
-
-
-def esVacia(cola):
-    return cola.entrada is None
-
-
-def imprimir(cola):
-    colaAuxiliar = Cola()
-    while not esVacia(cola):
-        info = atencion(cola)
-        print(info)
-        arribo(colaAuxiliar, info)
-    while not esVacia(colaAuxiliar):
-        info = atencion(colaAuxiliar)
-        arribo(cola, info)
-
-
-def index_of(cola, parametro):
-    colaAuxiliar = Cola()
-    index = 0
-    existe = False
-    while not esVacia(cola):
-        if cola.salida.info != parametro:
-            index += 1
+    def arribo(self, info):
+        nuevoNodo = nodoCola()
+        nuevoNodo.info = info
+        if self.salida is None:
+            self.salida = nuevoNodo
         else:
-            existe = True
-        info = atencion(cola)
-        arribo(colaAuxiliar, info)
-    while not esVacia(colaAuxiliar):
-        info = atencion(colaAuxiliar)
-        arribo(cola, info)
-    if existe == True:
-        return index
-    else:
-        return None
+            self.entrada.siguiente = nuevoNodo
+        self.entrada = nuevoNodo
+        self.tamanio += 1
+
+
+    def atencion(self):
+        info = self.salida.info
+        self.salida = self.salida.siguiente
+        if self.salida is None:
+            self.entrada = None
+        self.tamanio -= 1
+        return info
+
+
+    def esVacia(self):
+        return self.entrada is None
+
+
+    def imprimir(self):
+        colaAuxiliar = Cola()
+        while not self.esVacia():
+            info = self.atencion()
+            print(info)
+            colaAuxiliar.arribo(info)
+        while not colaAuxiliar.esVacia():
+            info = colaAuxiliar.esVacia()
+            self.arribo(info)
+
+
+    def index_of(self, parametro):
+        colaAuxiliar = Cola()
+        index = 0
+        existe = False
+        while not self.esVacia():
+            if self.salida.info != parametro:
+                index += 1
+            else:
+                existe = True
+            info = self.atencion()
+            colaAuxiliar.arribo(info)
+        while not colaAuxiliar.esVacia():
+            info = colaAuxiliar.atencion()
+            self.arribo(info)
+        if existe == True:
+            return index
+        else:
+            return None

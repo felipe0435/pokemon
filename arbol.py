@@ -1,5 +1,4 @@
-from cola import Cola, arribo, esVacia,atencion
-
+from cola import Cola
 
 class nodoArbol(object):
     def __init__(self, info):
@@ -8,93 +7,97 @@ class nodoArbol(object):
         self.info = info
 
 
-def insertarNodo(raiz, info):
-    if(raiz is None):
-        raiz = nodoArbol(info)
-    elif(info < raiz.info):
-        raiz.izq = insertarNodo(raiz.izq,info)
-    else:
-        raiz.der = insertarNodo(raiz.der,info)
-    return raiz
+    def insertarNodo(self, info):
+        if(info < self.info) and self.izq == None:
+            self.izq = nodoArbol(info)
+        elif(info < self.info) and self.izq != None:
+            self.izq = self.izq.insertarNodo(info)
+        elif (info > self.info) and self.der == None:
+            self.der = nodoArbol(info)
+        elif (info > self.info) and self.der != None:
+            self.der = self.der.insertarNodo(info)
+        return self
 
 
-def arbolVacio(raiz):
-    return raiz is None
+    def arbolVacio(self, raiz):
+        return raiz is None
 
 
-def remplazar(raiz):
-    aux = None
-    if(raiz.der is None):
-        aux = raiz
-        raiz = raiz.izq
-    else:
-        raiz.der, aux = remplazar(raiz.der)
-    return raiz, aux
-
-
-def eliminarNodo(raiz,info):
-    x = None
-    if(raiz is not None):
-        if(info<raiz.info):
-            raiz.izq, x = eliminarNodo(raiz.izq,info)
-        elif(info>raiz.info):
-            raiz.der, x = eliminarNodo(raiz.der,info)
+    def remplazar(self, raiz):
+        aux = None
+        if(raiz.der is None):
+            aux = raiz
+            raiz = raiz.izq
         else:
-            x=raiz.info
-            if(raiz.izq is None):
-                raiz = raiz.der
-            elif(raiz.der is None):
-                raiz = raiz.izq
+            raiz.der, aux = self.remplazar(raiz.der)
+        return raiz, aux
+
+
+    def eliminarNodo(self, raiz, info):
+        x = None
+        if(raiz is not None):
+            if(info<raiz.info):
+                raiz.izq, x = self.eliminarNodo(raiz.izq,info)
+            elif(info>raiz.info):
+                raiz.der, x = self.eliminarNodo(raiz.der,info)
             else:
-                raiz.izq, aux = remplazar(raiz.izq)
-                raiz.info = aux.info
-    return raiz, x
+                x=raiz.info
+                if(raiz.izq is None):
+                    raiz = raiz.der
+                elif(raiz.der is None):
+                    raiz = raiz.izq
+                else:
+                    raiz.izq, aux = self.remplazar(raiz.izq)
+                    raiz.info = aux.info
+        return raiz, x
 
 
-def buscar(raiz, info):
-    existe = False
-    if raiz is not None:
-        if existe == True:
-            pass
-        return raiz, info
-    elif(raiz.info == info):
-        return raiz.info
-    elif(raiz.izq < info):
-        return buscar(raiz.izq, info)
-    elif(raiz.der > info):
-        return buscar(raiz.der, info)
-    else:
-        return None
+    def buscar(self, raiz, info):
+        existe = False
+        if raiz is not None:
+            if existe == True:
+                pass
+            return raiz, info
+        elif(raiz.info == info):
+            return raiz.info
+        elif(raiz.izq < info):
+            return self.buscar(raiz.izq, info)
+        elif(raiz.der > info):
+            return self.buscar(raiz.der, info)
+        else:
+            return None
 
 
-def imprimirPorNivel(raiz):
-    pendientes = Cola()
-    arribo(pendientes, raiz)
-    while(not esVacia(pendientes)):
-        nodo = atencion(pendientes)
-        print(nodo.info)
-        if(nodo.izq is not None):
-            arribo(pendientes,nodo.izq)
-        if(nodo.der is not None):
-            arribo(pendientes, nodo.der)
+    def imprimirPorNivel(self, raiz):
+        pendientes = Cola()
+        pendientes.arribo(pendientes, raiz)
+        while(not self.esVacia(pendientes)):
+            nodo = pendientes.atencion(pendientes)
+            print(nodo.info)
+            if(nodo.izq is not None):
+                pendientes.arribo(pendientes, nodo.izq)
+            if(nodo.der is not None):
+                pendientes.arribo(pendientes, nodo.der)
 
 
-def imprimirInOrden(raiz):
-    if(raiz is not None):
-        imprimirInOrden(raiz.izq)
-        print(raiz.info)
-        imprimirInOrden(raiz.der)
+    def imprimirInOrden(self):
+        if(self.info is not None):
+            if self.izq != None:
+                self.izq.imprimirInOrden()
+            print(self.info)
+            if self.der != None:
+                self.der.imprimirInOrden()
 
 
-def imprimirPreOrden(raiz):
-    if(raiz is not None):
-        print(raiz.info)
-        imprimirPreOrden(raiz.izq)
-        imprimirPreOrden(raiz.der)
+    def imprimirPreOrden(self, raiz):
+        if(raiz is not None):
+            print(raiz.info)
+            self.imprimirPreOrden(raiz.izq)
+            self.imprimirPreOrden(raiz.der)
 
 
-def imprimirPostOrden(raiz):
-    if(raiz is not None):
-        imprimirPostOrden(raiz.izq)
-        imprimirPostOrden(raiz.der)
-        print(raiz.info)
+    def imprimirPostOrden(self, raiz):
+        if(raiz is not None):
+            self.imprimirPostOrden(raiz.izq)
+            self.imprimirPostOrden(raiz.der)
+            print(raiz.info)
