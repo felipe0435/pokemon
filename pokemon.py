@@ -1,10 +1,9 @@
 from lista import Lista
 
 class Pokemon():
-    def __init__(self, id, nombre, forma, gen):
+    def __init__(self, id, nombre, gen):
         self.__id = id
         self.__nombre = nombre
-        self.__forma = forma
         self.__tipo = None
         self.__stats = None
         self.__generacion = gen
@@ -16,10 +15,6 @@ class Pokemon():
 
     def get_id(self):
         return self.__id
-
-
-    def get_forma(self):
-        return self.__forma
 
 
     def get_generacion(self):

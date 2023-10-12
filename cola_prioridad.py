@@ -18,16 +18,16 @@ class Cola(object):
         else:
             actual = self.salida
             siguiente = actual.siguiente
-            while prioridad <= actual.prioridad:
-                if prioridad > actual.prioridad:
-                    self.salida.siguiente = actual
-                    self.salida = nuevoNodo
-                    break
-                elif siguiente == None:
-                    self.entrada.siguiente = nuevoNodo
+            while True:
+                if prioridad >= actual.prioridad and siguiente == None:
+                    actual.siguiente = nuevoNodo
                     self.entrada = nuevoNodo
                     break
-                elif prioridad == actual.prioridad and prioridad > siguiente.prioridad:
+                elif prioridad < actual.prioridad and siguiente == None:
+                    nuevoNodo.siguiente = actual
+                    self.salida = nuevoNodo
+                    break
+                elif prioridad >= actual.prioridad and prioridad < siguiente.prioridad:
                     nuevoNodo.siguiente = siguiente
                     actual.siguiente = nuevoNodo
                     break
@@ -58,8 +58,8 @@ class Cola(object):
     def imprimir(self):
         colaAuxiliar = Cola()
         while not self.esVacia():
-            info, prioridad = self.atencion
-            print(info)
+            info, prioridad = self.atencion()
+            print(info.get_nombre())
             colaAuxiliar.arribo(info, prioridad)
         while not colaAuxiliar.esVacia():
             info, prioridad = colaAuxiliar.atencion()
@@ -81,6 +81,25 @@ class Cola(object):
             info, prioridad = colaAuxiliar.atencion()
             self.arribo(info, prioridad)
         if existe == True:
-            return index
+            return index, existe
         else:
-            return None
+            return None, existe
+
+
+    def existe(self, parametro):
+        colaAuxiliar = Cola()
+        existe = False
+        while not self.esVacia():
+            if self.salida.info == parametro:
+                existe = True
+            info, prioridad = self.atencion()
+            colaAuxiliar.arribo(info, prioridad)
+        while not colaAuxiliar.esVacia():
+            info, prioridad = colaAuxiliar.atencion()
+            self.arribo(info, prioridad)
+
+        return existe
+
+
+    def get_tamanio(self):
+        return self.tamanio
