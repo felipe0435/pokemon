@@ -1,5 +1,3 @@
-from lista import Lista
-
 class Pokemon():
     def __init__(self, id, nombre, gen):
         self.__id = id

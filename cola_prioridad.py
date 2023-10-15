@@ -23,13 +23,17 @@ class Cola(object):
                     actual.siguiente = nuevoNodo
                     self.entrada = nuevoNodo
                     break
-                elif prioridad < actual.prioridad and siguiente == None:
-                    nuevoNodo.siguiente = actual
+                elif prioridad < self.salida.prioridad:
+                    nuevoNodo.siguiente = self.salida
                     self.salida = nuevoNodo
                     break
                 elif prioridad >= actual.prioridad and prioridad < siguiente.prioridad:
                     nuevoNodo.siguiente = siguiente
                     actual.siguiente = nuevoNodo
+                    break
+                elif prioridad < actual.prioridad:
+                    nuevoNodo.siguiente = actual
+                    nuevoNodo.salida = nuevoNodo
                     break
                 else:
                     if actual.siguiente != None:
@@ -57,9 +61,11 @@ class Cola(object):
 
     def imprimir(self):
         colaAuxiliar = Cola()
+        cont = 0
         while not self.esVacia():
+            cont += 1
             info, prioridad = self.atencion()
-            print(info.get_nombre())
+            print(info.get_nombre(), prioridad, cont)
             colaAuxiliar.arribo(info, prioridad)
         while not colaAuxiliar.esVacia():
             info, prioridad = colaAuxiliar.atencion()

@@ -7,15 +7,15 @@ class nodoArbol(object):
         self.info = info
 
 
-    def insertarNodo(self, info):
-        if(info < self.info) and self.izq == None:
-            self.izq = nodoArbol(info)
-        elif(info < self.info) and self.izq != None:
-            self.izq = self.izq.insertarNodo(info)
-        elif (info > self.info) and self.der == None:
-            self.der = nodoArbol(info)
-        elif (info > self.info) and self.der != None:
-            self.der = self.der.insertarNodo(info)
+    def insertarNodo(self, data):
+        if(data.get_nombre() < self.info.get_nombre()) and self.izq == None:
+            self.izq = nodoArbol(data)
+        elif(data.get_nombre() < self.info.get_nombre()) and self.izq != None:
+            self.izq = self.izq.insertarNodo(data)
+        elif (data.get_nombre() >= self.info.get_nombre()) and self.der == None:
+            self.der = nodoArbol(data)
+        elif (data.get_nombre() >= self.info.get_nombre()) and self.der != None:
+            self.der = self.der.insertarNodo(data)
         return self
 
 
@@ -84,7 +84,7 @@ class nodoArbol(object):
         if(self.info is not None):
             if self.izq != None:
                 self.izq.imprimirInOrden()
-            print(self.info)
+            print(self.info.get_nombre())
             if self.der != None:
                 self.der.imprimirInOrden()
 
@@ -104,4 +104,18 @@ class nodoArbol(object):
                 self.izq.imprimirPostOrden()
             if self.der != None:
                 self.der.imprimirPostOrden()
-            print(self.info)
+            print(self.info.get_nombre())
+
+
+    def existe(self, data):
+        if data.get_nombre() == self.info.get_nombre():
+            return True
+        elif data.get_nombre() < self.info.get_nombre() and self.izq == None:
+           return False
+        elif data.get_nombre() > self.info.get_nombre() and self.der == None:
+            return False
+        elif data.get_nombre() < self.info.get_nombre():
+            return self.izq.existe(data)
+        elif data.get_nombre() > self.info.get_nombre():
+            return self.der.existe(data)
+

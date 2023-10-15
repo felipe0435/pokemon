@@ -74,13 +74,14 @@ class Lista(object):
             elif actual.info.get_generacion() == info:
                 existe = True
                 lista.insertar(actual.info.get_nombre())
+            elif actual.info == info:
+                return index
             index += 1
             actual = actual.siguiente
         if existe:
             return lista
         else:
             return None
-
 
 
     def index(self, indice):
