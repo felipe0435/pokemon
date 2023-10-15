@@ -44,7 +44,7 @@ def crear_arbol(lista_pokemon):
     raiz = nodoArbol(lista_pokemon.index(indice))
     lista_chiquita = Lista()
     cont = 0
-    while cont < 500:
+    while cont < 300:
         indice = random.randint(0, lista_pokemon.tamanio - 1)
         if raiz.existe(lista_pokemon.index(indice)) == False:
             raiz.insertarNodo(lista_pokemon.index(indice))
