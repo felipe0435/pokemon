@@ -41,12 +41,12 @@ def crear_cola(lista_pokemon):
 
 def crear_arbol(lista_pokemon):
     # Crea el arbol segun los STAS totales
-    indice = random.randint(0, lista_pokemon.tamanio)
+    indice = random.randint(0, lista_pokemon.tamanio - 1)
     raiz = nodoArbol(lista_pokemon.index(indice))
     lista_chiquita = Lista()
     cont = 0
     while cont < 300:
-        indice = random.randint(0, lista_pokemon.tamanio)
+        indice = random.randint(0, lista_pokemon.tamanio - 1)
         if raiz.existe(lista_pokemon.index(indice)) == False:
             raiz.insertarNodo(lista_pokemon.index(indice))
             lista_chiquita.insertar(lista_pokemon.index(indice))
@@ -59,9 +59,14 @@ def crear_grafo(lista_pokemon):
     for i in range(lista_pokemon.tamanio):
         tabla_tipos.insertarVertice(lista_pokemon.index(i))
 
+    for j in range(lista_pokemon.tamanio):
+        print(j)
+        for c in range(lista_pokemon.tamanio):
+            tabla_tipos.insertarArista(tabla_tipos.buscarVertice(lista_pokemon.index(j)), tabla_tipos.buscarVertice(lista_pokemon.index(c)))
 
 
     print(tabla_tipos.tamanio)
+    print(tabla_tipos.imprimirPorAmplitud(tabla_tipos.buscarVertice(lista_pokemon.index(0))))
 
 
 

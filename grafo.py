@@ -44,15 +44,15 @@ class Grafo(object):
         self.tamanio += 1
 
 
-    def agregarArista(origen, info, destino):
+    def agregarArista(self, origen, info, destino):
         nodo = nodoArista(info, destino)
-        if origen.inicio is None or origen.inicio.destino > destino:
+        if origen.inicio is None:
             nodo.siguiente = origen.inicio
             origen.inicio = nodo
         else:
             ant = origen.inicio
             act = origen.inicio.siguiente
-            while act is not None and act.destino < nodo.destino:
+            while act is not None:
                 ant = act
                 act = act.siguiente
             nodo.siguiente = act
@@ -60,10 +60,12 @@ class Grafo(object):
         origen.tamanio += 1
 
 
-    def insertarArista(self, info, origen, destino):
-        self.agregarArista(origen.adyacentes, info, destino.info)
-        if not self.dirigido:
-            self.agregarArista(destino.adyacentes, info, origen.info)
+    def insertarArista(self, origen, destino):
+        info = self.multiplicador(origen.info.get_tipo(), destino.info.get_tipo())
+        if info > 1:
+            self.agregarArista(origen.adyacentes, info, destino.info)
+            if not self.dirigido:
+                self.agregarArista(destino.adyacentes, info, origen.info)
 
 
     def eliminarArista(vertice, destino):
@@ -202,7 +204,7 @@ class Grafo(object):
                 cola.arribo(vertice)
                 while not cola.esVacia():
                     nodo = cola.atencion()
-                    print(nodo.info)
+                    print(nodo.info.get_nombre())
                     adyacentes = nodo.adyacentes.inicio
                     while adyacentes is not None:
                         adyacente = self.buscarVertice(adyacentes.destino)
