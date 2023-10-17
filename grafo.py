@@ -30,13 +30,13 @@ class Grafo(object):
 
     def insertarVertice(self, info):
         nodo = nodoVertice(info)
-        if self.inicio is None or self.inicio.info > info:
+        if self.inicio is None:
             nodo.siguiente = self.inicio
             self.inicio = nodo
         else:
             ant = self.inicio
             act = self.inicio.siguiente
-            while act is not None and act.info < nodo.info:
+            while act is not None:
                 ant = act
                 act = act.siguiente
             nodo.siguiente = act
@@ -211,3 +211,753 @@ class Grafo(object):
                             cola.arribo(adyacente)
                         adyacentes = adyacentes.siguiente
             vertice = vertice.siguiente
+
+
+    def multiplicador(self, tipo1, tipo2):
+        total = 0
+        for i in range(2):
+            multiplicador = 1
+            match tipo1.index(i):
+                case "Grass":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador /= 2
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                multiplicador *= 2
+                            case "Bug":
+                                multiplicador /= 2
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador /= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                multiplicador *= 2
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                multiplicador /= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador *= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                multiplicador /= 2
+                            case _ :
+                                pass
+                case "Fire":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador *= 2
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                multiplicador /= 2
+                            case "Bug":
+                                multiplicador *= 2
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador *= 2
+                            case "Dragon":
+                                multiplicador /= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                multiplicador *= 2
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador /= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Water":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador /= 2
+                            case "Fire":
+                                multiplicador *= 2
+                            case "Water":
+                                multiplicador /= 2
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                multiplicador *= 2
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                pass
+                            case "Dragon":
+                                multiplicador /= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador *= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Bug":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador *= 2
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador /= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                multiplicador /= 2
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador /= 2
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                multiplicador /= 2
+                            case "Psychic":
+                                multiplicador *= 2
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                multiplicador *= 2
+                            case "Flying":
+                                multiplicador /= 2
+                            case _ :
+                                pass
+                case "Normal":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador = 0
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador /= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Poison":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador *= 2
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador /= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                multiplicador /= 2
+                            case "Fairy":
+                                multiplicador *= 2
+                            case "Steel":
+                                multiplicador = 0
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador /= 2
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador /= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Electric":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador /= 2
+                            case "Fire":
+                                pass
+                            case "Water":
+                                multiplicador *= 2
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                multiplicador /= 2
+                            case "Ground":
+                                multiplicador = 0
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                pass
+                            case "Dragon":
+                                multiplicador /= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                multiplicador *= 2
+                            case _ :
+                                pass
+                case "Ground":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador /= 2
+                            case "Fire":
+                                multiplicador *= 2
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador *= 2
+                            case "Electric":
+                                multiplicador *= 2
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador *= 2
+                            case "Dragon":
+                                multiplicador /= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador *= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                multiplicador = 0
+                            case _ :
+                                pass
+                case "Fairy":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador /= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                multiplicador *= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                multiplicador *= 2
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                multiplicador *= 2
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Steel":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                multiplicador /= 2
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                multiplicador /= 2
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                multiplicador *= 2
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                multiplicador *= 2
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador *= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Dragon":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                multiplicador = 0
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                multiplicador *= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Ghost":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                multiplicador = 0
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                pass
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador *= 2
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                multiplicador *= 2
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                multiplicador /= 2
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Ice":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador *= 2
+                            case "Fire":
+                                multiplicador /= 2
+                            case "Water":
+                                multiplicador /= 2
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                multiplicador *= 2
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                multiplicador *= 2
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                multiplicador /= 2
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                multiplicador *= 2
+                            case _ :
+                                pass
+                case "Fighting":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                multiplicador /= 2
+                            case "Normal":
+                                multiplicador *= 2
+                            case "Poison":
+                                multiplicador /= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                multiplicador /= 2
+                            case "Steel":
+                                multiplicador *= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador = 0
+                            case "Ice":
+                                multiplicador *= 2
+                            case "Fighting":
+                                pass
+                            case "Psychic":
+                                multiplicador /= 2
+                            case "Rock":
+                                multiplicador *= 2
+                            case "Dark":
+                                multiplicador *= 2
+                            case "Flying":
+                                multiplicador /= 2
+                            case _ :
+                                pass
+                case "Psychic":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                multiplicador *= 2
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                multiplicador *= 2
+                            case "Psychic":
+                                multiplicador /= 2
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                multiplicador = 0
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Rock":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                multiplicador *= 2
+                            case "Water":
+                                pass
+                            case "Bug":
+                                multiplicador *= 2
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                multiplicador /= 2
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                multiplicador *= 2
+                            case "Fighting":
+                                multiplicador /= 2
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                multiplicador *= 2
+                            case _ :
+                                pass
+                case "Dark":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                pass
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                pass
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                pass
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                multiplicador /= 2
+                            case "Steel":
+                                pass
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                multiplicador *= 2
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                multiplicador /= 2
+                            case "Psychic":
+                                multiplicador *= 2
+                            case "Rock":
+                                pass
+                            case "Dark":
+                                multiplicador /= 2
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case "Flying":
+                    for j in range(2):
+                        match tipo2.index(j):
+                            case "Grass":
+                                multiplicador *= 2
+                            case "Fire":
+                                pass
+                            case "Water":
+                                pass
+                            case "Bug":
+                                multiplicador *= 2
+                            case "Normal":
+                                pass
+                            case "Poison":
+                                pass
+                            case "Electric":
+                                multiplicador /= 2
+                            case "Ground":
+                                pass
+                            case "Fairy":
+                                pass
+                            case "Steel":
+                                multiplicador /= 2
+                            case "Dragon":
+                                pass
+                            case "Ghost":
+                                pass
+                            case "Ice":
+                                pass
+                            case "Fighting":
+                                multiplicador *= 2
+                            case "Psychic":
+                                pass
+                            case "Rock":
+                                multiplicador /= 2
+                            case "Dark":
+                                pass
+                            case "Flying":
+                                pass
+                            case _ :
+                                pass
+                case _ :
+                    multiplicador = 0
+            total += multiplicador
+
+        return total

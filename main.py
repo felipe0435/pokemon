@@ -5,6 +5,7 @@ from pokemon import Pokemon
 from lista import Lista
 from cola_prioridad import Cola
 from arbol import nodoArbol
+from grafo import Grafo
 
 
 def crear_lista():
@@ -40,12 +41,12 @@ def crear_cola(lista_pokemon):
 
 def crear_arbol(lista_pokemon):
     # Crea el arbol segun los STAS totales
-    indice = random.randint(0, lista_pokemon.tamanio - 1)
+    indice = random.randint(0, lista_pokemon.tamanio)
     raiz = nodoArbol(lista_pokemon.index(indice))
     lista_chiquita = Lista()
     cont = 0
     while cont < 300:
-        indice = random.randint(0, lista_pokemon.tamanio - 1)
+        indice = random.randint(0, lista_pokemon.tamanio)
         if raiz.existe(lista_pokemon.index(indice)) == False:
             raiz.insertarNodo(lista_pokemon.index(indice))
             lista_chiquita.insertar(lista_pokemon.index(indice))
@@ -53,14 +54,26 @@ def crear_arbol(lista_pokemon):
     return raiz, lista_chiquita
 
 
+def crear_grafo(lista_pokemon):
+    tabla_tipos = Grafo()
+    for i in range(lista_pokemon.tamanio):
+        tabla_tipos.insertarVertice(lista_pokemon.index(i))
+
+
+
+    print(tabla_tipos.tamanio)
+
+
+
 def main():
     # Abrir el archivo y pasarlo a una lista propia
     lista_pokemon = crear_lista()
     cola_pokemon = crear_cola(lista_pokemon)
     arbol_pokemon, lista_chiquita = crear_arbol(lista_pokemon)
+    crear_grafo(lista_pokemon)
     #arbol_pokemon.imprimirPostOrden()
 
-    indice = random.randint(0, lista_chiquita.tamanio - 1)
+    """indice = random.randint(0, lista_chiquita.tamanio - 1)
     ini_1  = time.time()
     print(lista_chiquita.index_of(lista_chiquita.index(indice)))
     fin_1 = time.time()
@@ -68,7 +81,7 @@ def main():
     ini_2 = time.time()
     print(arbol_pokemon.existe(lista_chiquita.index(indice)))
     fin_2 = time.time()
-    print(fin_2 - ini_2)
+    print(fin_2 - ini_2)"""
     """
     print(lista_pokemon.index(0).get_generacion())
     print("---------------------")
