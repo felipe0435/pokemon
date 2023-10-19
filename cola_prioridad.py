@@ -77,7 +77,7 @@ class Cola(object):
         index = 0
         existe = False
         while not self.esVacia():
-            if self.salida.info != parametro:
+            if self.salida.info != parametro and self.salida.info.get_nombre() != parametro:
                 index += 1
             else:
                 existe = True
@@ -96,7 +96,7 @@ class Cola(object):
         colaAuxiliar = Cola()
         existe = False
         while not self.esVacia():
-            if self.salida.info == parametro:
+            if self.salida.info == parametro or self.salida.info.get_nombre() == parametro:
                 existe = True
             info, prioridad = self.atencion()
             colaAuxiliar.arribo(info, prioridad)

@@ -91,7 +91,7 @@ class nodoArbol(object):
 
     def imprimirPreOrden(self):
         if(self.info is not None):
-            print(self.info)
+            print(self.info.get_nombre())
             if self.der != None:
                 self.der.imprimirPreOrden()
             if self.izq != None:

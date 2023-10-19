@@ -72,8 +72,22 @@ def main():
     lista_pokemon = crear_lista()
     cola_pokemon = crear_cola(lista_pokemon)
     arbol_pokemon, lista_chiquita = crear_arbol(lista_pokemon)
-    tabla_tipos = crear_grafo(lista_pokemon)
 
+    lista_tiempos = Lista()
+    prom = 0
+    """
+    for _ in range(10):
+        ini_grafo = time.time()
+        tabla_tipos = crear_grafo(lista_pokemon)
+        fin_grafo = time.time()
+        tot_grafo = fin_grafo - ini_grafo
+        prom += tot_grafo
+        lista_tiempos.insertar(tot_grafo)
+    prom /= 10
+    lista_tiempos.insertar(prom)
+    lista_tiempos.imprimir()
+    """
+    #arbol_pokemon.imprimirPostOrden()
 
     tiempos_lista = Lista()
     tiempos_arbol = Lista()
@@ -104,6 +118,21 @@ def main():
     print("-------------------------------------")
 
 
+    tiempos_cola = Lista()
+    tot_cola = 0
+    for _ in range(10):
+        indice = random.randint(0, lista_chiquita.tamanio - 1)
+        ini_cola = time.time()
+        print(cola_pokemon.index_of(lista_pokemon.index(indice)))
+        fin_cola = time.time()
+        tiempo_cola = fin_cola - ini_cola
+        tiempos_cola.insertar(tiempo_cola)
+        tot_cola += tiempo_cola
+    tot_cola /= 10
+    tiempos_cola.insertar(tot_cola)
+    tiempos_cola.imprimir()
+
+
     print(lista_pokemon.index(0).get_nombre())
     print("--------------------------")
     print(lista_pokemon.index_of("Charmander"))
@@ -115,12 +144,15 @@ def main():
     lista_pokemon.index_of('gen1').imprimir()
     print("---------------------------")
 
+    """
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Charmander"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Eevee"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Machop"))
     print("---------------------------")
+    print(fin_grafo - ini_grafo)
+    """
     # Busqueda por un atributo
         # Nombre
         # Numero de la pokedex

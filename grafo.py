@@ -62,7 +62,6 @@ class Grafo(object):
 
     def insertarArista(self, origen, destino):
         info = self.multiplicador(origen.info.get_tipo(), destino.info.get_tipo())
-        print(info)
         if info > 1:
             self.agregarArista(origen.adyacentes, info, destino.info)
             if not self.dirigido:
@@ -157,6 +156,7 @@ class Grafo(object):
         while aux is not None:
             print(aux.destino.get_nombre(), aux.info)
             aux = aux.siguiente
+        print(vertice.adyacentes.tamanio)
 
 
     def esAdyacente(self, vertice, destino):
@@ -960,7 +960,7 @@ class Grafo(object):
                             case _ :
                                 pass
                 case _ :
-                    multiplicador = 1
+                    pass
             total *= multiplicador
 
         return total
