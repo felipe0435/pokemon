@@ -62,6 +62,7 @@ class Grafo(object):
 
     def insertarArista(self, origen, destino):
         info = self.multiplicador(origen.info.get_tipo(), destino.info.get_tipo())
+        print(info)
         if info > 1:
             self.agregarArista(origen.adyacentes, info, destino.info)
             if not self.dirigido:
@@ -122,7 +123,7 @@ class Grafo(object):
 
     def buscarVertice(self, info):
         aux = self.inicio
-        while aux is not None and aux.info != info:
+        while aux is not None and (aux.info != info and aux.info.get_nombre() != info):
             aux = aux.siguiente
         return aux
 
@@ -149,16 +150,16 @@ class Grafo(object):
         return resultado
 
 
-    def adyacentes(vertice):
+    def get_adyacentes(self, vertice):
         if vertice is None:
             return None
         aux = vertice.adyacentes.inicio
         while aux is not None:
-            print(aux.destino, aux.info)
+            print(aux.destino.get_nombre(), aux.info)
             aux = aux.siguiente
 
 
-    def esAdyacente(vertice, destino):
+    def esAdyacente(self, vertice, destino):
         resultado = False
         aux = vertice.adyacentes.inicio
         while aux is not None and not resultado:
@@ -186,7 +187,7 @@ class Grafo(object):
         while vertice is not None:
             if not vertice.visitado:
                 vertice.visitado = True
-                print(vertice.info)
+                print(vertice.info.get_nombre())
                 adyacentes = vertice.adyacentes.inicio
                 while adyacentes is not None:
                     adyacente = self.buscarVertice(adyacentes.destino)
@@ -216,7 +217,7 @@ class Grafo(object):
 
 
     def multiplicador(self, tipo1, tipo2):
-        total = 0
+        total = 1
         for i in range(2):
             multiplicador = 1
             match tipo1.index(i):
@@ -959,7 +960,7 @@ class Grafo(object):
                             case _ :
                                 pass
                 case _ :
-                    multiplicador = 0
-            total += multiplicador
+                    multiplicador = 1
+            total *= multiplicador
 
         return total

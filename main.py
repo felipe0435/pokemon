@@ -44,7 +44,7 @@ def crear_arbol(lista_pokemon):
     indice = random.randint(0, lista_pokemon.tamanio - 1)
     raiz = nodoArbol(lista_pokemon.index(indice))
     lista_chiquita = Lista()
-    cont = 0
+    cont = 1
     while cont < 300:
         indice = random.randint(0, lista_pokemon.tamanio - 1)
         if raiz.existe(lista_pokemon.index(indice)) == False:
@@ -55,19 +55,22 @@ def crear_arbol(lista_pokemon):
 
 
 def crear_grafo(lista_pokemon):
+    inicio = time.time()
     tabla_tipos = Grafo()
     for i in range(lista_pokemon.tamanio):
         tabla_tipos.insertarVertice(lista_pokemon.index(i))
-
-    for j in range(lista_pokemon.tamanio):
+    for j in range(3,4):
         print(j)
         for c in range(lista_pokemon.tamanio):
-            tabla_tipos.insertarArista(tabla_tipos.buscarVertice(lista_pokemon.index(j)), tabla_tipos.buscarVertice(lista_pokemon.index(c)))
+            tabla_tipos.insertarArista(tabla_tipos.buscarVertice(lista_pokemon.index(j)),
+                                       tabla_tipos.buscarVertice(lista_pokemon.index(c)))
+            print(c)
 
-
-    print(tabla_tipos.tamanio)
-    print(tabla_tipos.imprimirPorAmplitud(tabla_tipos.buscarVertice(lista_pokemon.index(0))))
-
+    fin = time.time()
+    print(fin - inicio)
+    tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Charmander"))
+    print(tabla_tipos.buscarVertice("Blastoise").adyacentes.inicio)
+    return tabla_tipos
 
 
 def main():
@@ -75,9 +78,9 @@ def main():
     lista_pokemon = crear_lista()
     cola_pokemon = crear_cola(lista_pokemon)
     arbol_pokemon, lista_chiquita = crear_arbol(lista_pokemon)
-    crear_grafo(lista_pokemon)
-    #arbol_pokemon.imprimirPostOrden()
+    tabla_tipos = crear_grafo(lista_pokemon)
 
+    #arbol_pokemon.imprimirPostOrden()
     """indice = random.randint(0, lista_chiquita.tamanio - 1)
     ini_1  = time.time()
     print(lista_chiquita.index_of(lista_chiquita.index(indice)))
@@ -86,19 +89,23 @@ def main():
     ini_2 = time.time()
     print(arbol_pokemon.existe(lista_chiquita.index(indice)))
     fin_2 = time.time()
-    print(fin_2 - ini_2)"""
-    """
-    print(lista_pokemon.index(0).get_generacion())
-    print("---------------------")
+    print(fin_2 - ini_2)
+
+    print(lista_pokemon.index(0).get_nombre())
+    print("--------------------------")
     print(lista_pokemon.index_of("Charmander"))
-    print("-------------------------")
+    print("--------------------------")
     lista_pokemon.index_of('413').imprimir()
-    print("------------------------")
+    print("--------------------------")
     lista_pokemon.index_of('Dragon').imprimir()
     print("--------------------------")
     lista_pokemon.index_of('gen1').imprimir()
-    """
-
+    print("--------------------------")
+    print(lista_pokemon.index(0).get_nombre())
+    #lista_pokemon.eliminar("Bulbasaur")
+    print(lista_pokemon.index(0).get_nombre())
+    print("---------------------------")
+    tabla_tipos.adyacentes(tabla_tipos.buscarVertice("Charmander"))"""
 
     # Busqueda por un atributo
         # Nombre

@@ -39,7 +39,7 @@ class Lista(object):
     def eliminar(self, info):
         data = None
         # saber si es el primero de la self
-        if(self.inicio.info == info):
+        if(self.inicio.info == info) or self.inicio.info.get_nombre() == info:
             data = self.inicio
             self.inicio = self.inicio.siguiente
             self.tamanio -= 1
