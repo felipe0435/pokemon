@@ -8,6 +8,7 @@ class nodoArbol(object):
 
 
     def insertarNodo(self, data):
+        # se aniade un nuevo nodo segun el nombre del pokemon
         if(data.get_nombre() < self.info.get_nombre()) and self.izq == None:
             self.izq = nodoArbol(data)
         elif(data.get_nombre() < self.info.get_nombre()) and self.izq != None:
@@ -20,6 +21,7 @@ class nodoArbol(object):
 
 
     def arbolVacio(self, raiz):
+        # dice si es vacia la cola
         return raiz is None
 
 
@@ -34,6 +36,7 @@ class nodoArbol(object):
 
 
     def eliminarNodo(self, raiz, info):
+        # Saca un nodo y lo ordena
         x = None
         if(raiz is not None):
             if(info<raiz.info):
@@ -53,6 +56,7 @@ class nodoArbol(object):
 
 
     def buscar(self, raiz, info):
+        # busca una informacion en el arbol
         existe = False
         if raiz is not None:
             if existe == True:
@@ -108,6 +112,7 @@ class nodoArbol(object):
 
 
     def existe(self, data):
+        # dice si existe el objeto en el arbol
         if data.get_nombre() == self.info.get_nombre():
             return True
         elif data.get_nombre() < self.info.get_nombre() and self.izq == None:
@@ -118,4 +123,3 @@ class nodoArbol(object):
             return self.izq.existe(data)
         elif data.get_nombre() > self.info.get_nombre():
             return self.der.existe(data)
-

@@ -143,6 +143,7 @@ def main():
     print("--------------------------")
     lista_pokemon.index_of('gen1').imprimir()
     print("---------------------------")
+    cola_pokemon.imprimir()
 
     """
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Charmander"))

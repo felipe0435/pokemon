@@ -1,11 +1,11 @@
-import time
 import csv
 import random
-from pokemon import Pokemon
-from lista import Lista
-from cola_prioridad import Cola
+import time
 from arbol import nodoArbol
+from cola_prioridad import Cola
 from grafo import Grafo
+from lista import Lista
+from pokemon import Pokemon
 
 
 def crear_lista():
@@ -55,6 +55,7 @@ def crear_arbol(lista_pokemon):
 
 
 def crear_grafo(lista_pokemon):
+    # Crea el grafo segun los tipos del pokemon
     tabla_tipos = Grafo()
     for i in range(lista_pokemon.tamanio):
         tabla_tipos.insertarVertice(lista_pokemon.index(i))
@@ -63,18 +64,19 @@ def crear_grafo(lista_pokemon):
         for c in range(lista_pokemon.tamanio):
             tabla_tipos.insertarArista(tabla_tipos.buscarVertice(lista_pokemon.index(j)),
                                        tabla_tipos.buscarVertice(lista_pokemon.index(c)))
-
     return tabla_tipos
 
 
 def main():
     # Abrir el archivo y pasarlo a una lista propia
     lista_pokemon = crear_lista()
+    # Genera una cola apartir de la lista
     cola_pokemon = crear_cola(lista_pokemon)
+    # Genera un arbol apartir de la lista
     arbol_pokemon, lista_chiquita = crear_arbol(lista_pokemon)
-    tabla_tipos = crear_grafo(lista_pokemon)
-
-
+    # Genera un grafo apartir de la lista
+    #tabla_tipos = crear_grafo(lista_pokemon)
+    # Calculo de tiempos
     tiempos_lista = Lista()
     tiempos_arbol = Lista()
     tot_l = 0
@@ -97,13 +99,8 @@ def main():
     tot_a /= 10
     tiempos_lista.insertar(tot_l)
     tiempos_arbol.insertar(tot_a)
-
-    tiempos_lista.imprimir()
-    print("-------------------------------------")
-    tiempos_arbol.imprimir()
-    print("-------------------------------------")
-
-
+    # busqueda en las distintas estructuras
+    # > Lista
     print(lista_pokemon.index(0).get_nombre())
     print("--------------------------")
     print(lista_pokemon.index_of("Charmander"))
@@ -114,21 +111,20 @@ def main():
     print("--------------------------")
     lista_pokemon.index_of('gen1').imprimir()
     print("---------------------------")
-
+    cola_pokemon.imprimir()
+    print("---------------------------")
+    tiempos_lista.imprimir()
+    print("---------------------------")
+    tiempos_arbol.imprimir()
+    print("---------------------------")
+    """
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Charmander"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Eevee"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Machop"))
     print("---------------------------")
-    # Busqueda por un atributo
-        # Nombre
-        # Numero de la pokedex
-        # tipo
-        # Generacion
-    # Generacion una Cola por prioridad de generacion de 100 elementos
-    # Generacion un Arbol Binario con 300 pokemons aleatorios ordenados por pokedex
-
+"""
 
 if __name__ == "__main__":
     main()

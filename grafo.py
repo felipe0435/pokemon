@@ -89,14 +89,14 @@ class Grafo(object):
 
     def eliminarVertice(self, info):
         x = None
-        if self.inicio.info == info:
+        if self.inicio.info == info or self.inicio.info.get_nombre == info:
             x = self.inicio.info
             self.inicio = self.inicio.siguiente
             self.tamanio -= 1
         else:
             ant = self.inicio
             act = self.inicio.siguiente
-            while act is not None and act.info != info:
+            while act is not None and (act.info != info and act.info.get_nombre() != info):
                 ant = act
                 act = act.siguiente
             if act is not None:
@@ -217,6 +217,7 @@ class Grafo(object):
 
 
     def multiplicador(self, tipo1, tipo2):
+        # Genera el multiplicador por el cual el pokemon gana o pierde contra otro
         total = 1
         for i in range(2):
             multiplicador = 1
@@ -962,5 +963,4 @@ class Grafo(object):
                 case _ :
                     pass
             total *= multiplicador
-
         return total

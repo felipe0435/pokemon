@@ -65,7 +65,7 @@ class Cola(object):
         while not self.esVacia():
             cont += 1
             info, prioridad = self.atencion()
-            print(info.get_nombre(), prioridad, cont)
+            print(info.get_nombre(), prioridad)
             colaAuxiliar.arribo(info, prioridad)
         while not colaAuxiliar.esVacia():
             info, prioridad = colaAuxiliar.atencion()
@@ -73,6 +73,7 @@ class Cola(object):
 
 
     def index_of(self, parametro):
+        # Busca un pokemon segun su nombre y devuelve su lugar en la lista
         colaAuxiliar = Cola()
         index = 0
         existe = False
@@ -93,6 +94,7 @@ class Cola(object):
 
 
     def existe(self, parametro):
+        # Dice si existe o no el nombre del pokemon en la cola
         colaAuxiliar = Cola()
         existe = False
         while not self.esVacia():
@@ -103,9 +105,9 @@ class Cola(object):
         while not colaAuxiliar.esVacia():
             info, prioridad = colaAuxiliar.atencion()
             self.arribo(info, prioridad)
-
         return existe
 
 
     def get_tamanio(self):
+        # Dice el tamanio de la cola
         return self.tamanio
