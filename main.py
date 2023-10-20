@@ -75,7 +75,7 @@ def main():
     # Genera un arbol apartir de la lista
     arbol_pokemon, lista_chiquita = crear_arbol(lista_pokemon)
     # Genera un grafo apartir de la lista
-    #tabla_tipos = crear_grafo(lista_pokemon)
+    tabla_tipos = crear_grafo(lista_pokemon)
     # Calculo de tiempos
     tiempos_lista = Lista()
     tiempos_arbol = Lista()
@@ -117,14 +117,14 @@ def main():
     print("---------------------------")
     tiempos_arbol.imprimir()
     print("---------------------------")
-    """
+
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Charmander"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Eevee"))
     print("---------------------------")
     tabla_tipos.get_adyacentes(tabla_tipos.buscarVertice("Machop"))
     print("---------------------------")
-"""
+
 
 if __name__ == "__main__":
     main()
